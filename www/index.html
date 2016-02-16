@@ -77,11 +77,6 @@
               for="password"
             >
               Password
-              (<a
-                role="button"
-                href="#"
-                class="js-reset-password"
-              >reset</a>)
             </label>
             <input
               class="form-input form-input-small mbm"
@@ -96,6 +91,11 @@
               name="sign-in"
               type="submit"
             >Log in</button>
+            <a
+              role="button"
+              href="#"
+              class="js-reset-password prls"
+            >reset password?</a>
           </form>
         </div>
         <div class="js-signedin-message hide signedin-message text-right mbm">
@@ -142,11 +142,12 @@
               <tr>
                 <th>Amount</th>
                 <th>Item</th>
+                <th></th>
               </tr>
             </thead>
             <tbody class="js-tracker-output text-center">
               <tr class="table-placeholder">
-                <td colspan="2">
+                <td colspan="3">
                   Nothing tracked yet, add something!
                 </td>
               </tr>

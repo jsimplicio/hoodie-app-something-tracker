@@ -7,6 +7,7 @@ var $signupButton = document.querySelector('.js-signup-btn')
 var $signoutButton = document.querySelector('.js-signout-btn')
 var $signinToggle = document.querySelector('.js-signin-toggle')
 var $signupToggle = document.querySelector('.js-signup-toggle')
+var $deleteItem = document.querySelector('.js-delete-item')
 
 var $trackerForm = document.querySelector('.js-tracker-input')
 var $trackerOutput = document.querySelector('.js-tracker-output')
@@ -122,9 +123,12 @@ $trackerForm.addEventListener('submit', function (event) {
 })
 
 $trackerClearButton.addEventListener('click', function (event) {
-  hoodie.store.clear().then(function () {
+  hoodie.store.removeAll().then(function () {
     window.location.reload()
   })
+})
+
+hoodie.store.on('remove', function () {
 })
 
 /**
@@ -153,15 +157,23 @@ function addNote (note) {
   var row = document.createElement('tr')
   var amountTd = document.createElement('td')
   var noteTd = document.createElement('td')
+  var deleteTd = document.createElement('td')
 
   amountTd.textContent = note.amount
   noteTd.textContent = note.note
+  deleteTd.innerHTML = '<a href="#" class="js-delete-item">Delete</a>'
 
+  row.setAttribute('id', note.id)
   row.appendChild(amountTd)
   row.appendChild(noteTd)
+  row.appendChild(deleteTd)
 
   $trackerOutput.appendChild(row)
 }
+
+$deleteItem.addEventListener('click', function (event) {
+  event.preventDefault()
+})
 
 function showSignedIn (username) {
   document.querySelector('.js-username').textContent = username
